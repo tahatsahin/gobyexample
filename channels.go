@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// Channels ----------------------------------------------
-	fmt.Println("Channels Section")
+	fmt.Println("\n\nChannels Section")
 
 	messages := make(chan string)
 	go func() { messages <- "ping" }()
@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(msg)
 
 	// Channel Buffering -------------------------------------
-	fmt.Println("Channel Buffering Section")
+	fmt.Println("\n\nChannel Buffering Section")
 
 	// make channels of string buffering up to 2 values.
 	messages = make(chan string, 2)
@@ -28,12 +28,21 @@ func main() {
 	fmt.Println(<-messages)
 
 	// Channel Synchronization -------------------------------
-	fmt.Println("Channel Synchronization Section")
+	fmt.Println("\n\nChannel Synchronization Section")
 
 	done := make(chan bool, 1)
 	go worker(done)
 
 	<-done
+
+	// Channel Directions ------------------------------------
+	fmt.Println("\n\n\nChannel Directions Section")
+
+	pings := make(chan string, 1)
+	pongs := make(chan string, 1)
+	ping(pings, "passed message")
+	pong(pings, pongs)
+	fmt.Println(<-pongs)
 
 }
 
@@ -43,4 +52,13 @@ func worker(done chan bool) {
 	fmt.Print("done")
 
 	done <- true
+}
+
+func ping(pings chan<- string, msg string) {
+	pings <- msg
+}
+
+func pong(pings <-chan string, pongs chan<- string) {
+	msg := <-pings
+	pongs <- msg
 }

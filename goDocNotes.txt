@@ -59,3 +59,31 @@
      without a corresponding receiver for those values.
 
      we can use channels to sync execution across goroutines.
+
+     you can specify if a channel is meant to only send or receive values
+     this specificity increases tje type-safety of the program
+
+-select
+     go's select lets ou wait on multiple channel operations.
+     combining goroutines and channels with select is a powerful feature.
+
+     each channel will receive a value after some amount of time, to 
+     simulate e.g. blocking RPC operations executing in concurrent
+     goroutines. use select to await both of these values simultaneously
+     printing each one as it arrives.
+
+-timeouts
+     timeouts are important for programs that connect to external sources.
+     http request has a default of 120 seconds timeout, channel waits for
+     an answer for 120 seconds, if no response came, request cancels.
+
+-closing channels
+     closing channels can be useful to communicate completion to the
+     channel's receives
+     it is possible to close a non-empty channel but still have the
+     remaining values received. look at range over channels.
+
+-timers
+     we often want to execute go code at some point in the future,
+     or repeatedly at some interval. Go's built in timer and ticker
+     features make both of these tasks easy.
