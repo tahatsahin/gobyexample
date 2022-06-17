@@ -42,3 +42,20 @@
 -generics
      generics is beautiful, try to use them in projects
 
+-channels
+     Channels are the pipes that connect concurrent goroutines. 
+     You can send values into channels from one goroutine and 
+     receive those values into another goroutine.
+     make(chan T)
+     send a value into a channel using the channel <- syntax.
+     the <-channel syntax receives a value from the channel.
+     by default, sends and receives block until both sender and receiver
+     are ready. This property allowed us to wait at the end of our program
+     without having to use any other synchronization.
+
+     By default, channels are unbuffered, they will only accept sends 
+     (chan <-) if there is a corresponding receive (<- chan) ready to receive
+     the sent value. Buffered channels accept a limited number of values
+     without a corresponding receiver for those values.
+
+     we can use channels to sync execution across goroutines.
