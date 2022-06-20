@@ -87,3 +87,33 @@
      we often want to execute go code at some point in the future,
      or repeatedly at some interval. Go's built in timer and ticker
      features make both of these tasks easy.
+
+-tickers 
+     tickers are for when you want to do something repeatedly at regular
+     intervals.
+
+-rateLimiting
+     important mechanism for controlling resource utilization and 
+     maintaining quality of service. Go supports rate limiting with 
+     goroutines, channels and tickers
+
+-atomicCounters
+     the primary mechanism for managing state in Go is communication
+     over channels. sync/atomic package.
+
+-mutexes
+     more complex state, mutex can be used to safely acces data across
+     multiple goroutines.
+
+-statefulGoroutines (TODO: leadn more about this... unclear...)
+     this channel based approach aligns with go's ideas of sharing memory
+     by communicating and having each piece of data owned by exactly 1 
+     goroutine
+
+-panic
+     a common use of panic is to abort if a function returns an error value
+     that we don't know how to handle
+
+-defer
+     defer is used to ensure that a function call is performed later in
+     a program's execution, usually for purposes of cleanup. 
