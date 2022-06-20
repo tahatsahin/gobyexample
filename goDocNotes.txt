@@ -117,3 +117,12 @@
 -defer
      defer is used to ensure that a function call is performed later in
      a program's execution, usually for purposes of cleanup. 
+
+-recover
+     it is possible to recover from a panic, by using the recover func.
+     recover can stop a panic from aborting the program and let it 
+     continue with execution instead.
+     a server wouldn't want to crash if one of the client connections
+     exhibits a critical error. Instead server would want to close that
+     connection and continue serving other clients. In fact, this is what
+     Go's net/http does by default for HTTP servers.
